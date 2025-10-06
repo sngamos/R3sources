@@ -4,7 +4,9 @@ A collection of interesting resources I thought might be useful next time.
 ## Learning
 1. [how2heap github repo](https://github.com/shellphish/how2heap)
     - Super informative repo for heap exploitation techniques.
-
+## Useful Blogposts
+1. [pentestmonkey Reverse Shell Cheatsheet](https://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet)
+    - Great reverse shell commands
 
 ## Licence Keys/ Activating Products
 1. [Massgrave](https://massgrave.dev/)
