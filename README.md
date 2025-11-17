@@ -15,3 +15,8 @@ A collection of interesting resources I thought might be useful next time.
     - [Setup Guide](https://bbs.kanxue.com/thread-282846.htm) in Chinese.
     - Works on M series Macs and Windows (haven't tested on Linux).
     - Checked the signature, no malware.
+
+## Useful Online Tools
+1. [OCR2edit](https://www.ocr2edit.com)
+    - Convert scanned PDFs to .txt outputs.
+    - Can use this and github copilot to clean up texts.
